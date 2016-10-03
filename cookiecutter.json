@@ -1,0 +1,18 @@
+{
+  "project_name": "Python Boilerplate",
+  "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+  "pkg_name": "{{ cookiecutter.project_slug|replace('-', '') }}",
+  "version": "1.0",
+  "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
+
+  "full_name": "Charles Bouchard-Légaré",
+  "email": "cblegare.atl@ntis.ca",
+  "github_username": "abstrus",
+  "pypi_username": "{{ cookiecutter.github_username }}",
+
+  "create_author_file": "y",
+  "open_source_license": [
+    "MIT license", "BSD license", "ISC license", "Apache Software License 2.0",
+    "GNU General Public License v3", "Not open source"
+  ]
+}
