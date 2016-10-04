@@ -2,6 +2,7 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/hooks" />
+    <content url="file://$MODULE_DIR$/tests" />
     <content url="file://$MODULE_DIR$/{{cookiecutter.project_slug}}">
       <sourceFolder url="file://$MODULE_DIR$/{{cookiecutter.project_slug}}/setup.py" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/{{cookiecutter.project_slug}}/descriptor" isTestSource="false" />
