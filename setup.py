@@ -1,0 +1,56 @@
+from setuptools import setup
+import distutils.cmd
+
+
+class Cookiecutter(distutils.cmd.Command):
+    """
+    Setup venvs for development or production
+    """
+
+    description = 'bake my cookies'
+    user_options = []
+
+    def initialize_options(self):
+        """Set default values for options."""
+        # Each user option must be listed here with their default value.
+        pass
+
+    def finalize_options(self):
+        """Post-process options."""
+        pass
+
+    def run(self):
+        """Run command."""
+        from cookiecutter.main import cookiecutter
+        cookiecutter(".", overwrite_if_exists=True, output_dir="build", )
+
+setup(
+    name='cookiecutter-pypackage',
+    packages=[],
+    version='0.1.0',
+    description='Cookiecutter template for a Python package',
+    author='Audrey Roy Greenfeld',
+    license='BSD',
+    author_email='aroy@alum.mit.edu',
+    url='https://github.com/audreyr/cookiecutter-pypackage',
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest', 'pytest-cookies'],
+    cmdclass={"cookiecutter": Cookiecutter},
+    keywords=['cookiecutter', 'template', 'package', ],
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        'License :: OSI Approved :: BSD License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
+        'Topic :: Software Development',
+    ],
+) 

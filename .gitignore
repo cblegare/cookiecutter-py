@@ -1,0 +1,92 @@
+##########
+###
+### Python
+###
+### Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+### C extensions
+*.so
+### Distribution / packaging
+env/
+parts/
+build/
+dist/
+sdist/
+eggs/
+*.egg
+.eggs/
+*.egg-info/
+develop-eggs/
+downloads/
+.installed.cfg
+### Unit test / coverage reports
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+### Flask stuff:
+instance/
+.webassets-cache
+### pyenv
+.python-version
+### virtualenv
+venv/
+### Log Files
+*.log
+###
+#########
+
+#########
+###
+### Not python-related
+###
+### Vagrant template
+.vagrant/
+### NotepadPP template
+# Notepad++ backups #
+*.bak
+### Autotools template
+# http://www.gnu.org/software/automake
+Makefile.in
+# http://www.gnu.org/software/autoconf
+/autom4te.cache
+/autoscan.log
+/autoscan-*.log
+/aclocal.m4
+/compile
+/config.h.in
+/configure
+/configure.scan
+/depcomp
+/install-sh
+/missing
+/stamp-h1
+### Gradle files
+.gradle/
+### Kate
+# Swap Files #
+.*.kate-swp
+.swp.*
+### Linux template
+# KDE directory preferences
+.directory
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+### Vim template
+# swap
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+###
+#########

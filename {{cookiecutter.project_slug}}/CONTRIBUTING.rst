@@ -104,14 +104,3 @@ Before you submit a pull request, check that it meets these guidelines:
 3. The pull request should work for Python 2.6, 2.7, 3.3, 3.4 and 3.5, and for PyPy. Check
    https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/pull_requests
    and make sure that the tests pass for all supported Python versions.
-
-Tips
-----
-
-To run a subset of tests::
-
-{% if cookiecutter.use_pytest == 'y' -%}
-    $ py.test tests.test_{{ cookiecutter.project_slug }}
-{% else %}
-    $ python -m unittest tests.test_{{ cookiecutter.project_slug }}
-{%- endif %}

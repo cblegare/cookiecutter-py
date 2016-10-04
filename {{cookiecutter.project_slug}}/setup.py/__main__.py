@@ -37,7 +37,7 @@ def cmdclasses():
 def setup():
     profile = {
         "name": "{{cookiecutter.project_name}}",
-        "description": "{{cookiecutter.project_description}}",
+        "description": "{{cookiecutter.project_short_description}}",
         "long_description": str(long_description()),
         "url": "{{cookiecutter.project_url}}",
         "license": "{{cookiecutter.project_license}}",
