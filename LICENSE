@@ -2,7 +2,7 @@
 GNU GENERAL PUBLIC LICENSE
                       Version 3, 29 June 2007
 
-    Python Boilerplate contains all the boilerplate you need to create a Python package.
+    cookiecutter-py provides a template to create a Python package.
     Copyright (C) 2016  Charles Bouchard-Légaré
 
     This program is free software: you can redistribute it and/or modify
