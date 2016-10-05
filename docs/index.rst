@@ -1,10 +1,9 @@
-.. cookiecutter-pypackage documentation master file, created by
-   sphinx-quickstart on Sun Dec 13 09:13:01 2015.
+.. cookiecutter-py documentation master file
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to cookiecutter-pypackage's documentation!
-==================================================
+Welcome to cookiecutter-py's documentation!
+===========================================
 
 Getting Started
 ---------------
@@ -30,7 +29,6 @@ Advanced Features
 .. toctree::
    :maxdepth: 2
 
-   travis_pypi_setup
    console_script_setup
 
 

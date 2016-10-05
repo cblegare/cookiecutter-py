@@ -26,21 +26,12 @@ For Every Release
 
 #. Update version number (can also be patch or major)
 
-    .. code-block:: bash
-
-        bumpversion minor
-
-#. Install the package again for local development, but with the new version number:
+#. Install the package again for local development, but with the new version
+   number:
 
     .. code-block:: bash
 
         python setup.py develop
-
-#. Run the tests:
-
-    .. code-block:: bash
-
-        tox
 
 #. Push the commit:
 
@@ -54,9 +45,11 @@ For Every Release
 
         git push --tags
 
-#. Check the PyPI listing page to make sure that the README, release notes, and roadmap display properly. If not, try one of these:
+#. Check the PyPI listing page to make sure that the README, release notes,
+   and roadmap display properly. If not, try one of these:
 
-    #. Copy and paste the RestructuredText into http://rst.ninjs.org/ to find out what broke the formatting.
+    #. Copy and paste the RestructuredText into http://rst.ninjs.org/ to find
+       out what broke the formatting.
 
     #. Check your long_description locally:
 
@@ -65,7 +58,9 @@ For Every Release
             pip install readme_renderer
             python setup.py check -r -s
 
-#. Edit the release on GitHub (e.g. https://github.com/audreyr/cookiecutter/releases). Paste the release notes into the release's release page, and come up with a title for the release.
+#. Edit the release on GitHub (e.g. https://github.com/abstrus/cookiecutter/releases).
+   Paste the release notes into the release's release page, and come up with a
+   title for the release.
 
 About This Checklist
 --------------------

@@ -1,12 +1,12 @@
 {
-  "project_name": "Python Boilerplate",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-  "version": "1.0",
-  "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
-  "project_url": "https://github.com/abstrus/cookiecutter-py",
   "full_name": "Charles Bouchard-Légaré",
   "email": "cblegare.atl@ntis.ca",
   "github_username": "abstrus",
+  "project_name": "Python Boilerplate",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
+  "project_url": "https://github.com/abstrus/cookiecutter-py",
+  "version": "1.0",
   "pypi_username": "{{ cookiecutter.github_username }}",
 
   "create_author_file": "y",
