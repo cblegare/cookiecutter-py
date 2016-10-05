@@ -22,5 +22,5 @@ if __name__ == '__main__':
         remove_file('AUTHORS.rst')
         remove_file('docs/authors.rst')
 
-    if 'Not open source' == '{{ cookiecutter.open_source_license }}':
+    if 'Not open source' == '{{ cookiecutter.project_license }}':
         remove_file('LICENSE')

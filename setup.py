@@ -22,7 +22,7 @@ class Cookiecutter(distutils.cmd.Command):
     def run(self):
         """Run command."""
         from cookiecutter.main import cookiecutter
-        cookiecutter(".", overwrite_if_exists=True, output_dir="build", )
+        cookiecutter(".", overwrite_if_exists=True, output_dir="build")
 
 setup(
     name='cookiecutter-pypackage',

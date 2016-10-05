@@ -36,7 +36,7 @@ def cmdclasses():
 
 def setup():
     profile = {
-        "name": "{{cookiecutter.project_name}}",
+        "name": "{{cookiecutter.project_slug}}",
         "description": "{{cookiecutter.project_short_description}}",
         "long_description": str(long_description()),
         "url": "{{cookiecutter.project_url}}",
@@ -48,12 +48,19 @@ def setup():
         "keywords": '',
         "packages": setuptools.find_packages(exclude=['doc', 'test*']),
         "include_package_data": True,
+        "entry_points": {
+            'console_scripts': [
+                '{{ cookiecutter.project_slug }}={{ cookiecutter.project_slug }}.__main__:main'
+            ]
+        },
         "author": 'Charles Bouchard-Légaré',
         "install_requires": list(install_requires()),
+        "setup_requires": ['pytest', 'pytest-runner'],
+        "tests_require": ['pytest', 'pytest-cookies'],
         "dependency_links": list(dependency_links()),
         "author_email": 'cblegare.atl@ntis.ca',
         "version": str(version()),
-        "cmdclass": list(cmdclasses())
+        "cmdclass": dict(cmdclasses())
     }
 
     url_pass = {
