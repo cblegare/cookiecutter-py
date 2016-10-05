@@ -4,7 +4,7 @@ Cookiecutter PyPackage
 
 Cookiecutter_ template for a Python package.
 
-* GitHub repo: https://github.com/abtrus/cookiecutter-py/
+* GitHub repo: https://github.com/abstrus/cookiecutter-py/
 * Free software: GNU General Public License v3
 
 Features
