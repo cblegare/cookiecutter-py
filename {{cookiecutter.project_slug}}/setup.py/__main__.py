@@ -117,7 +117,8 @@ class Venv(distutils.cmd.Command):
         """Post-process options."""
         if self.deps:
             deps = Path(str(self.deps))
-            assert deps.exists(), ('Pylint config file %s does not exist.'.format(deps))
+            assert deps.exists(), \
+                ('Requirements file %s does not exist.'.format(deps))
 
     def run(self):
         """Run command."""
