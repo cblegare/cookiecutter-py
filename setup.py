@@ -22,7 +22,7 @@ class Cookiecutter(Command):
     Bake the cookies
     """
 
-    description = 'bake my cookies'
+    description = 'bake the cookiecutter'
     user_options = []
 
     def initialize_options(self):
@@ -45,44 +45,156 @@ class Documentation(Command):
     Bake the cookies
     """
 
-    description = 'bake my docs'
+    description = 'create documentation distribution'
     user_options = [
-        ('sphinx-target=', None, 'documentation output format'),
+        ('builder=', None, 'documentation output format'
+                                 ' [default: html]'),
+        ('paper=', None, 'paper format [default: letter]'),
+        ('dist-dir=', None, 'directory to put final built distributions in'
+                            ' [default: dist/docs]'),
+        ('build-dir=', None, 'temporary directory for creating the distribution'
+                            ' [default: build/docs]'),
+        ('src-dir=', None, 'documentation source directory'
+                           ' [default: docs'),
+    ]
+
+    targets = {
+        "html": {
+            "comment": "The HTML pages are in {build_dir!s}.",
+        },
+        "dirhtml": {
+            "comment": "The HTML pages are in {build_dir!s}.",
+        },
+        "singlehtml": {
+            "comment": "The HTML pages are in {build_dir!s}.",
+        },
+        "latex": {
+            "comment": "The LaTeX files are in {build_dir!s}.",
+        },
+    }
+
+    def initialize_options(self):
+        """Set default values for options."""
+        # Each user option must be listed here with their default value.
+        project_directory = Path(__file__).parent
+
+        self.builder = "html"
+        self.paper = "letter"
+        self.dist_dir = str(project_directory / "dist")
+        self.build_root = str(project_directory / "build")
+        self.src_dir = str(project_directory / "docs")
+
+    def finalize_options(self):
+        if self.builder in self.targets:
+            self._actual_targets = [self.builder]
+        elif self.builder == "all":
+            self._actual_targets = self.targets.keys()
+        else:
+            self._actual_targets = []
+        assert self.paper in ["a4", "letter"]
+        self._canonical_directories()
+        self.announce(
+            "Building {!s} documentation".format(self.builder), 2)
+        self.announce(
+            "  using source at '{!s}'".format(self.src_dir), 2)
+        self.announce(
+            "  putting work files at '{!s}'".format(self.build_root), 2)
+        self.announce(
+            "  distributing documentation at '{!s}'".format(self.dist_root), 2)
+
+    def run(self):
+        """Run command."""
+        result_dirs = {}
+        for target in self._actual_targets:
+            result_dirs[target] = self._build_doc(target)
+        for target, result_dir in result_dirs.items():
+            self.announce("Documentation target '{!s}' : {!s}".format(
+                target,
+                self.targets[target]["comment"].format(
+                    build_dir=result_dir)), 2)
+
+    def _canonical_directories(self):
+        self.dist_root = Path(self.dist_dir)
+        self.dist_root.mkdir(exist_ok=True, parents=True)
+        self.dist_root.resolve()
+        self.build_root = Path(self.build_root)
+        self.build_root.mkdir(exist_ok=True, parents=True)
+        self.build_root.resolve()
+        self.src_dir = Path(self.src_dir)
+        self.src_dir.resolve()
+
+    def _build_doc(self, target):
+        import shutil
+        import sphinx
+        build_dir = self.build_root / "docs" / target
+        dist_dir = self.dist_root / "docs" / target
+
+        cached_directory = build_dir.parent / "doctrees"
+
+        all_sphinx_opts = [
+            '',
+            "-b", target,
+            "-d", cached_directory,
+            "-D", "latex_paper_size={!s}".format(self.paper),
+            self.src_dir,
+            build_dir
+        ]
+
+        sphinx.build_main([str(arg) for arg in all_sphinx_opts])
+
+        shutil.rmtree(str(dist_dir), ignore_errors=True)
+        dist_dir.parent.mkdir(exist_ok=True, parents=True)
+        shutil.copytree(str(build_dir), str(dist_dir))
+        return dist_dir
+
+
+class Venv(Command):
+    """
+    Setup venvs for development or production
+    """
+
+    description = 'create a virtualenv pre-installed with dependencies'
+    user_options = [
+        # The format is (long option, short option, description).
+        ('deps=', None, 'path to requirements.txt'),
     ]
 
     def initialize_options(self):
         """Set default values for options."""
         # Each user option must be listed here with their default value.
-        self.sphinx_target = "html"
+        self.deps = './requirements.txt'
 
     def finalize_options(self):
-        possible_target = [
-            "html", "dirhtml", "singlehtml", "pickle", "json", "htmlhelp",
-            "qthelp", "applehelp", "devhelp", "epub", "latex", "latexpdf",
-            "latexpdfja", "text", "man", "texinfo", "info", "gettext",
-            "changes", "xml", "pseudoxml", "linkcheck", "doctest", "coverage",
-        ]
-        assert self.sphinx_target in possible_target
+        """Post-process options."""
+        if self.deps:
+            deps = Path(str(self.deps))
+            assert deps.exists(), \
+                ('Requirements file %s does not exist.'.format(deps))
 
     def run(self):
         """Run command."""
-        import subprocess
-        import shlex
-        project_directory = Path(__file__).parent
-        build_directory = project_directory / "build" / "docs"
-        dist_directory = project_directory / "dist" / "docs"
-        build_directory.mkdir(exist_ok=True, parents=True)
-        dist_directory.mkdir(exist_ok=True, parents=True)
-        build_directory = build_directory.resolve()
-        dist_directory = dist_directory.resolve()
-        print(build_directory.resolve(), dist_directory)
-        command = "make BUILDDIR={!s} clean {!s}".format(build_directory,
-                                                         self.sphinx_target)
-        with working_directory(PROJECT_DIRECTORY / "docs"):
-            print(command)
-            subprocess.Popen(shlex.split(command)).wait()
-        expected_output = build_directory / self.sphinx_target
-        expected_output.replace(dist_directory / self.sphinx_target)
+        import venv
+        venv.EnvBuilder(clear=True, with_pip=True).create("venv")
+
+
+class Clean(Command):
+    """Custom clean command to tidy up the project root."""
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        import shutil
+        import glob
+        shutil.rmtree("./build", ignore_errors=True)
+        shutil.rmtree("./__pycache__", ignore_errors=True)
+        shutil.rmtree("./dist", ignore_errors=True)
+        for path in glob.glob("./*.egg-info"):
+            shutil.rmtree(path, ignore_errors=True)
 
 
 def main():
@@ -99,7 +211,9 @@ def main():
         tests_require=['pytest', 'pytest-cookies', 'sphinx'],
         cmdclass={
             "cookiecutter": Cookiecutter,
-            "docs": Documentation
+            "docs": Documentation,
+            "venv": Venv,
+            "clean": Clean
         },
         keywords=['cookiecutter', 'template', 'package', ],
         classifiers=[

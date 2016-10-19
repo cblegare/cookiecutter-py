@@ -6,7 +6,10 @@ Tutorial
 
 .. _`Edit this file`: https://github.com/abstrus/cookiecutter-pypackage/blob/master/docs/tutorial.rst
 
-To start with, you will need a `GitHub account`_ and an account on `PyPI`_. Create these before you get started on this tutorial. If you are new to Git and GitHub, you should probably spend a few minutes on some of the tutorials at the top of the page at `GitHub Help`_.
+To start with, you will need a `GitHub account`_ and an account on `PyPI`_.
+Create these before you get started on this tutorial. If you are new to Git and
+GitHub, you should probably spend a few minutes on some of the tutorials at the
+top of the page at `GitHub Help`_.
 
 .. _`GitHub account`: https://github.com/
 .. _`PyPI`: https://pypi.python.org/pypi

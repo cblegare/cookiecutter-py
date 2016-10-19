@@ -13,6 +13,7 @@ Getting Started
 
    readme
    tutorial
+   troubleshooting
    pypi_release_checklist
 
 Basics

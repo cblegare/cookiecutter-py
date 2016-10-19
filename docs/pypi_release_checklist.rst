@@ -13,7 +13,7 @@ Before Your First Release
 #. Visit PyPI to make sure it registered.
 
 For Every Release
--------------------
+-----------------
 
 #. Update HISTORY.rst
 
