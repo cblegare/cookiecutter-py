@@ -24,3 +24,10 @@ if __name__ == '__main__':
 
     if 'Not open source' == '{{ cookiecutter.project_license }}':
         remove_file('LICENSE')
+
+    namespace = '{{ cookiecutter.namespace }}'
+    source_dir = '{{ cookiecutter.project_slug }}'
+    if namespace:
+        parts = namespace.split(".")
+        os.makedirs(os.path.join(*parts), exist_ok=True)
+        os.rename(source_dir, os.path.join(*parts, source_dir))

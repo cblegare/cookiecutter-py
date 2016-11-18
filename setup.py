@@ -197,25 +197,23 @@ class Clean(Command):
             shutil.rmtree(path, ignore_errors=True)
 
 
-def main():
-    setup(
+def get_distribution_info():
+    return dict(
         name='cookiecutter-py',
         packages=[],
-        version='0.1.0',
+        version='1.0',
         description='Cookiecutter template for a Python package',
         author='Charles Bouchard-Légaré',
         license='GNU General Public License v3',
         author_email='cblegare.atl@ntis.ca',
         url='https://github.com/abstrus/cookiecutter-py',
-        setup_requires=['pytest-runner'],
+        setup_requires=['pytest-runner', 'cookiecutter'],
         tests_require=['pytest', 'pytest-cookies', 'sphinx'],
-        cmdclass={
-            "cookiecutter": Cookiecutter,
-            "docs": Documentation,
-            "venv": Venv,
-            "clean": Clean
-        },
-        keywords=['cookiecutter', 'template', 'package', ],
+        keywords=['cookiecutter', 'template', 'package'],
+        cmdclass={'docs': Documentation,
+                  'venv': Venv,
+                  'clean': Clean,
+                  'cookiecutter': Cookiecutter},
         classifiers=[
             'Development Status :: 4 - Beta',
             'Environment :: Console',
@@ -225,9 +223,13 @@ def main():
             'Programming Language :: Python',
             'Programming Language :: Python :: 3.5',
             'Programming Language :: Python :: Implementation :: CPython',
-            'Topic :: Software Development',
+            'Topic :: Software Development'
         ],
     )
+
+
+def main():
+    setup(**get_distribution_info())
 
 
 @contextlib.contextmanager

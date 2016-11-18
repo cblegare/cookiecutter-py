@@ -43,6 +43,29 @@ Then:
 .. _`pip docs for requirements files`: https://pip.pypa.io/en/stable/user_guide/#requirements-files
 
 
+Known issues
+~~~~~~~~~~~~
+
+Be carefull with namespace packages using the `implicit namespace`_
+mechanism. Most projects managed by the Python Packaging Authority are
+not fully compliant yet.
+
+- https://github.com/pypa/packaging-problems/issues/12
+- https://github.com/pypa/setuptools/pull/789
+- https://github.com/pypa/setuptools/issues/250
+- https://github.com/pypa/setuptools/issues/513
+- https://github.com/pypa/pip/issues/3
+
+You may also have issues with imports with sphinx, pytest or pylint.
+
+- https://github.com/sphinx-doc/sphinx/issues/1500
+- https://github.com/pytest-dev/pytest/issues/1567
+- https://github.com/pytest-dev/pytest/pull/1568
+- https://github.com/PyCQA/pylint/issues/842
+
+.. _`implicit namespace`: https://www.python.org/dev/peps/pep-0420/
+
+
 Fork This / Create Your Own
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

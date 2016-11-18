@@ -3,12 +3,14 @@
   "email": "cblegare.atl@ntis.ca",
   "github_username": "abstrus",
   "project_name": "Python Boilerplate",
+  "namespace": "",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "package_name": "{% if cookiecutter.namespace %}{{ cookiecutter.namespace }}.{{ cookiecutter.project_slug }}{% else %}{{ cookiecutter.project_slug }}{% endif %}",
   "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
-  "project_url": "https://github.com/abstrus/cookiecutter-py",
+  "project_url": "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}",
   "version": "1.0",
   "pypi_username": "{{ cookiecutter.github_username }}",
-
+  "extra_index_url": "",
   "create_author_file": "y",
   "project_license": [
     "MIT license", "BSD license", "ISC license", "Apache Software License 2.0",

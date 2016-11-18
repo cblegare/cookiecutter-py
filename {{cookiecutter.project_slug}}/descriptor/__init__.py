@@ -5,7 +5,7 @@
 """
 Descriptor API.
 
-For several good examples of this, read the python cookbook :cite:´BeJo13´.
+For several good examples of this, read the python cookbook [BeJo13]_.
 
 .. rubric:: References
 
@@ -18,9 +18,7 @@ class Descriptor(object):
     Base class for a descriptor.  We do not use :class:´abc.ABCMeta´
     to minimize metaclass conflicts in subclass implementation.
 
-    Example usage:
-
-    .. code-block::
+    Example usage::
 
         >>> class HitPoints(Descriptor):
         ...     def __init__(self, name=None, **opts):
@@ -76,12 +74,10 @@ class Descriptor(object):
 class DescriptorRegister(type):
     """
     This metaclass let a class set automatically the name of its
-    descriptors (sub-classes of :class:´Descritor´ above).
+    descriptors (sub-classes of :class:´Descriptor´).
 
     For instance, our :class:´PlayerCharacter´'s definition can now be
-    simpler:
-
-    .. code-block::
+    simpler::
 
         >>> class HitPoints(Descriptor):
         ...     pass # see above
@@ -130,9 +126,7 @@ class TransformOnSet(Descriptor):
     """
     Transforms a value before assignment
 
-    Example usage:
-
-    .. code-block::
+    Example usage::
 
         >>> class Person(metaclass=DescriptorRegister):
         ...     age = TransformOnSet(set_callable=str)

@@ -92,3 +92,4 @@ tags
 .idea/
 ###
 #########
+/{{cookiecutter.project_slug}}/
