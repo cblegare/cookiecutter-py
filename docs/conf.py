@@ -40,7 +40,6 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
-    "sphinxcontrib-asyncio",
     "sphinx_autodoc_typehints",
 ]
 

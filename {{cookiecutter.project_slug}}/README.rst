@@ -1,7 +1,4 @@
 {% set is_open_source = cookiecutter.project_license != 'Not open source' -%}
-===============================
-{{ cookiecutter.project_name }}
-===============================
 
 {% if is_open_source %}
 .. image:: https://img.shields.io/pypi/v/{{ cookiecutter.project_slug }}.svg
@@ -22,10 +19,12 @@
 
 {{ cookiecutter.project_short_description }}
 
+
 {% if is_open_source %}
-* Free software: {{ cookiecutter.project_license}}
-* Documentation: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io.
+{{ cookiecutter.project_name }} is free software and licensed under the
+{{ cookiecutter.project_license}}.  See :ref:`license` for details.
 {% endif %}
+
 
 Features
 --------

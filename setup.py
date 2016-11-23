@@ -9,12 +9,14 @@ Setup script
 
 import contextlib
 import os
+import sys
+import subprocess
 from pathlib import Path
 from setuptools import setup
 from setuptools import Command
 
 
-PROJECT_DIRECTORY = Path(__file__).parent
+PROJECT_DIRECTORY = Path(__file__).parent.resolve()
 
 
 class Cookiecutter(Command):
@@ -23,12 +25,20 @@ class Cookiecutter(Command):
     """
 
     description = 'bake the cookiecutter'
-    user_options = []
+    user_options = [
+        ('no-input', None, 'Do not prompt for parameters and only use '
+                            'cookiecutter.json file content',
+                            ' [default: False]'),
+        ('replay', None, 'Do not prompt for parameters and only use '
+                         'information entered previously '
+                         ' [default: letter]')
+    ]
 
     def initialize_options(self):
         """Set default values for options."""
         # Each user option must be listed here with their default value.
-        pass
+        self.no_input = False
+        self.replay = False
 
     def finalize_options(self):
         """Post-process options."""
@@ -37,7 +47,9 @@ class Cookiecutter(Command):
     def run(self):
         """Run command."""
         from cookiecutter.main import cookiecutter
-        cookiecutter(".", overwrite_if_exists=True, output_dir="build")
+        return cookiecutter(".", overwrite_if_exists=True, output_dir="build",
+                            no_input=self.no_input,
+                            replay=self.replay)
 
 
 class Documentation(Command):
@@ -76,12 +88,12 @@ class Documentation(Command):
     def initialize_options(self):
         """Set default values for options."""
         # Each user option must be listed here with their default value.
-        project_directory = Path(__file__).parent
+        project_directory = PROJECT_DIRECTORY
 
         self.builder = "html"
         self.paper = "letter"
-        self.dist_dir = str(project_directory / "dist")
-        self.build_root = str(project_directory / "build")
+        self.dist_dir = str(project_directory / "dist/docs")
+        self.build_root = str(project_directory / "build/docs")
         self.src_dir = str(project_directory / "docs")
 
     def finalize_options(self):
@@ -126,8 +138,8 @@ class Documentation(Command):
     def _build_doc(self, target):
         import shutil
         import sphinx
-        build_dir = self.build_root / "docs" / target
-        dist_dir = self.dist_root / "docs" / target
+        build_dir = self.build_root / target
+        dist_dir = self.dist_root / target
 
         cached_directory = build_dir.parent / "doctrees"
 
@@ -146,6 +158,41 @@ class Documentation(Command):
         dist_dir.parent.mkdir(exist_ok=True, parents=True)
         shutil.copytree(str(build_dir), str(dist_dir))
         return dist_dir
+
+
+class BakedDocumentation(Command):
+    """
+
+    """
+    description = 'create documentation distribution from baked project'
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        """Run command."""
+        import subprocess
+
+        baking_command = Cookiecutter(self.distribution)
+        baking_command.no_input = True
+        bakedproject_directory = Path(baking_command.run())
+        bakeddoc_build_directory = PROJECT_DIRECTORY / "build" / "baked-docs"
+        bakeddoc_dist_directory = PROJECT_DIRECTORY / "dist" / "baked-docs"
+        bakeddoc_docs_directory = bakedproject_directory / "docs"
+
+        doc_build_command = [sys.executable,
+                             bakedproject_directory / "setup.py",
+                             "docs",
+                             "--src-dir={!s}".format(bakeddoc_docs_directory),
+                             "--build-dir={!s}".format(bakeddoc_build_directory),
+                             "--dist-dir={!s}".format(bakeddoc_dist_directory)]
+
+        subprocess.check_call([str(arg) for arg in doc_build_command],
+                              cwd=str(bakedproject_directory))
 
 
 class Venv(Command):
@@ -213,7 +260,8 @@ def get_distribution_info():
         cmdclass={'docs': Documentation,
                   'venv': Venv,
                   'clean': Clean,
-                  'cookiecutter': Cookiecutter},
+                  'cookiecutter': Cookiecutter,
+                  'baked_docs': BakedDocumentation},
         classifiers=[
             'Development Status :: 4 - Beta',
             'Environment :: Console',

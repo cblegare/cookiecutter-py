@@ -31,6 +31,7 @@ Advanced Features
    :maxdepth: 2
 
    console_script_setup
+   baked_project
 
 
 Indices and tables

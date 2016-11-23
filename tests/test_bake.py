@@ -22,7 +22,7 @@ else:
 
 
 CONTEXTS = [
-    {},
+    {'namespace': ''},
     {'namespace': 'namespace'}
 ]
 
