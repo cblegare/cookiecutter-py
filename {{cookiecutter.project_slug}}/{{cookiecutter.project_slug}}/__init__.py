@@ -2,9 +2,7 @@
 # coding: utf8
 
 
-"""
-Package main definition
-"""
+"""Package main definition."""
 
 
 from pkg_resources import get_distribution, DistributionNotFound
@@ -24,8 +22,7 @@ except DistributionNotFound:
     # Note that development installations may break other packages from
     # the same implicit namespace
     # (see https://github.com/pypa/packaging-problems/issues/12)
-    __version__ = "(local)"
+    __version__ = '(local)'
 else:
     pass
     # make shortcut import here
-
