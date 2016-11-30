@@ -2,6 +2,7 @@
 # coding: utf8
 
 
+from collections import OrderedDict
 from contextlib import contextmanager
 import copy
 import datetime
@@ -21,12 +22,17 @@ else:
     import imp
 
 
-CONTEXTS = [
-    {'namespace': ''},
-    {'namespace': 'namespace'}
-]
+CONTEXTS = OrderedDict(
+    trivial={'namespace': ''},
+    namespace={'namespace': 'namespace'},
+    special_chars={'namespace': '',
+                   'full_name': 'name "quote" name'}
+)
 
-@pytest.fixture(scope="function", params=CONTEXTS)
+
+@pytest.fixture(scope="function",
+                params=CONTEXTS.values(),
+                ids=list(CONTEXTS.keys()))
 def context(request):
     yield copy.copy(request.param)
 
@@ -63,18 +69,17 @@ def test_bake_and_run_tests(cookies, context):
         run_inside_dir('python setup.py test', str(result.project)) == 0
 
 
-def test_bake_withspecialchars_and_run_tests(cookies, context):
+def test_bake_and_check_style(cookies, context):
     """
-    Generated setup.py tests run just fine even in special chars in context
+    Generated setup.py flake8 runs just fine
 
     :param cookies:
     :param context:
     :return:
     """
-    context.update({'full_name': 'name "quote" name'})
     with bake_in_temp_dir(cookies, extra_context=context) as result:
         assert result.project.isdir()
-        run_inside_dir('python setup.py test', str(result.project)) == 0
+        run_inside_dir('python setup.py lint', str(result.project)) == 0
 
 
 def test_bake_without_author_file(cookies, context):

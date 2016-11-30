@@ -9,14 +9,18 @@ For several good examples of this, read the python cookbook [BeJo13]_.
 
 .. rubric:: References
 
-.. [BeJo13] Python Cookbook, 3rd edition, by David Beazley and Brian K. Jones (O’Reilly). Copyright 2013 David Beazley and Brian Jones, 978-1-449-34037-7.
+.. [BeJo13] Python Cookbook, 3rd edition,
+            by David Beazley and Brian K. Jones (O’Reilly).
+            Copyright 2013 David Beazley and Brian Jones, 978-1-449-34037-7.
 """
 
 
 class Descriptor(object):
     """
-    Base class for a descriptor.  We do not use :class:´abc.ABCMeta´
-    to minimize metaclass conflicts in subclass implementation.
+    Base class for a descriptor.
+
+    We do not use :class:´abc.ABCMeta´ to minimize metaclass conflicts in
+    subclass implementation.
 
     Example usage::
 
@@ -53,6 +57,11 @@ class Descriptor(object):
 
     def __init__(self, name=None, **kwargs):
         """
+        Construct a descriptor.
+
+        A descriptor's constructor is usually called from a class definition
+        body.
+
         :param name: The property name of this descriptor.  The metaclass
                      :class:´DescriptorRegister´ can do it for you.
         :param kwargs: All kwargs are added as attributes. This may be
@@ -64,6 +73,8 @@ class Descriptor(object):
 
     def __set__(self, instance, value):
         """
+        Set self.  This gets called with the assignement operator (*=*).
+
         :param instance: Since a decorator is used as an other object's
                          attribute, this contains that object's instance
         :param value: The raw value to set, before descriptor-fu
@@ -73,6 +84,8 @@ class Descriptor(object):
 
 class DescriptorRegister(type):
     """
+    Automatically set the name of descriptors of generated classes.
+
     This metaclass let a class set automatically the name of its
     descriptors (sub-classes of :class:´Descriptor´).
 
@@ -89,6 +102,8 @@ class DescriptorRegister(type):
 
     def __new__(cls, clsname, bases, methods):
         """
+        When the class is instanciated, set all names of :class:~`Descriptor`s.
+
         :param clsname: Class name of the class we are creating
         :param bases: The class we are creating inherits from all of
                       these
@@ -102,29 +117,9 @@ class DescriptorRegister(type):
         return type.__new__(cls, clsname, bases, methods)
 
 
-class HasDescriptorMixin(object):
-    """
-    Descriptors are useful for keeping a certain property as a specific
-    class while exposing primitive type as it's interface. This class
-    provides a class method for constructing a descriptor of this class.
-
-    This class is also useful for monkey-patching third party objects to
-    use them in descriptors.
-    """
-
-    @staticmethod
-    def descriptor(*args, **kwargs):
-        args_l = list(args)
-        try:
-            descriptor_class = args_l.pop(0)
-        except IndexError:
-            descriptor_class = Descriptor
-        return descriptor_class(*tuple(args_l), **kwargs)
-
-
 class TransformOnSet(Descriptor):
     """
-    Transforms a value before assignment
+    Transform a value before assignment.
 
     Example usage::
 
@@ -139,16 +134,23 @@ class TransformOnSet(Descriptor):
         <class 'str'>
 
     """
-    set_callable = lambda x: x
 
     def __set__(self, instance, value):
+        """Store the result of ``self.set_callable(value)``."""
         super().__set__(instance, self.set_callable(value))
+
+    @classmethod
+    def set_callable(cls, x):
+        """Default to doing nothing (neutral)."""
+        return x
 
 
 class String(TransformOnSet):
+    """Cast to string on every assignment."""
+
     set_callable = str
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import doctest
     doctest.testmod(verbose=False, report=False)

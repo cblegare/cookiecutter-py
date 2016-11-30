@@ -11,7 +11,7 @@ class Greetings(object):
 
     Here is an example usage::
 
-        >>> str(Greetings("Charles"))
+        >>> str(Greetings('Charles'))
         'Hello Charles!'
 
     """
@@ -26,7 +26,7 @@ class Greetings(object):
 
     def __str__(self):
         """Provide a string representation of a normal greeting."""
-        return "Hello {!s}!".format(self._name)
+        return 'Hello {!s}!'.format(self._name)
 
 
 class Formal(Greetings):
@@ -34,7 +34,7 @@ class Formal(Greetings):
 
     def __str__(self):
         """Provide a string representation of a formal greeting."""
-        return "Good evening {!s}".format(self._name)
+        return 'Good evening {!s}'.format(self._name)
 
 
 class Slang(Greetings):
@@ -42,4 +42,4 @@ class Slang(Greetings):
 
     def __str__(self):
         """Provide a string representation of a slang greeting."""
-        return "Yo !!1 {!s}!".format(self._name)
+        return 'Yo !!1 {!s}!'.format(self._name)

@@ -1,3 +1,5 @@
 radon
 xenon
 flake8
+flake8-quotes>=0.3
+pycodestyle>=2.2

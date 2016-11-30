@@ -255,7 +255,7 @@ def get_distribution_info():
         author_email='cblegare.atl@ntis.ca',
         url='https://github.com/abstrus/cookiecutter-py',
         setup_requires=['pytest-runner', 'cookiecutter'],
-        tests_require=['pytest', 'pytest-cookies', 'sphinx'],
+        tests_require=['pytest', 'pytest-cookies', 'sphinx', 'flake8'],
         keywords=['cookiecutter', 'template', 'package'],
         cmdclass={'docs': Documentation,
                   'venv': Venv,
