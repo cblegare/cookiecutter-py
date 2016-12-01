@@ -2,5 +2,4 @@
 # coding: utf8
 
 
-"""
-"""
+"""Cookiecutter template tests."""
