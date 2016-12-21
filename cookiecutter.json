@@ -16,5 +16,6 @@
     "MIT license", "BSD license", "ISC license", "Apache Software License 2.0",
     "GNU General Public License v3", "Not open source"
   ],
-  "use_flask": "y"
+  "use_flask": "y",
+  "make_rest_api": "{{ cookiecutter.use_flask }}"
 }

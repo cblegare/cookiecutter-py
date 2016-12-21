@@ -251,13 +251,14 @@ class ProjectMetadata(object):
                     cmdclass={'docs': Documentation,
                               'venv': Venv,
                               'clean': Clean},
-                    install_requires=[],
-                    tests_require=['pytest',
-                                   'pytest-cookies'],
+                    install_requires=['flask_ripozo'],
+                    tests_require=['pytest-cookies',
+                                   'pytest'],
                     setup_requires=['pbr>=1.9',
                                     'setuptools>=17.1',
-                                    'pytest',
-                                    'pytest-runner'])
+                                    'flake8',
+                                    'pytest-runner',
+                                    'pytest'])
 
     def __str__(self):
         """Provide a human-readable representation."""
