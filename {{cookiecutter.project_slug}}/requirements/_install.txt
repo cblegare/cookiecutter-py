@@ -1,0 +1,7 @@
+{% if cookiecutter.use_flask == 'y' -%}
+flask
+{% endif -%}
+{% if cookiecutter.make_rest_api == 'y' -%}
+flask_ripozo
+ripozo
+{% endif -%}

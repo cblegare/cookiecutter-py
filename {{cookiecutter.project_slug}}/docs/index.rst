@@ -36,6 +36,7 @@ Development resources
    :maxdepth: 2
 
    setup_script
+   testing
    modules
 
 

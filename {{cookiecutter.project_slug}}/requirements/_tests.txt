@@ -1,2 +1,4 @@
 coverage
+pytest-cookies
 pytest
+{% if cookiecutter.use_flask == 'y' -%}pytest-flask{% else -%}{% endif -%}

@@ -14,13 +14,14 @@ import os
 import platform
 import shutil
 import urllib.parse
+from typing import List
 
 import setuptools
 
 __all__ = (
     'ProjectMetadata',
     'Clean',
-    'Venv',
+
     'Documentation',
 )
 
@@ -169,7 +170,7 @@ class ProjectMetadata(object):
         return self._ensure_short_string(value)
 
     @cached_property
-    def author_email(self):
+    def author_email(self) -> str:
         """
         Email address of the package author.
 
@@ -181,7 +182,7 @@ class ProjectMetadata(object):
         return self._ensure_email_address(value)
 
     @cached_property
-    def classifiers(self):
+    def classifiers(self) -> List[str]:
         """
         A list of classifiers.
 
@@ -195,7 +196,7 @@ class ProjectMetadata(object):
         return [self._ensure_short_string(string) for string in value]
 
     @cached_property
-    def packages(self):
+    def packages(self) -> List[str]:
         """
         A list of packages to distribute (and all their submodules).
 
@@ -213,10 +214,36 @@ class ProjectMetadata(object):
             find_packages = setuptools.find_packages
         else:
             find_packages = setuptools.PEP420PackageFinder.find
-        value = find_packages(str(PROJECT_ROOT), exclude=['docs',
+        value = find_packages(str(PROJECT_ROOT), exclude=['docs*',
                                                           'test*',
                                                           'requirements'])
         return [self._ensure_short_string(package) for package in value]
+
+    @cached_property
+    def install_requires(self) -> List[str]:
+        """
+        A string or list of strings specifying what other distributions need
+        to be installed when this one is.
+
+        It's usage is explained in `setuptools documentation
+        <http://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-dependencies>`
+
+        :return: a list of strings
+        """
+        return list_from_file('requirements/_install.txt')
+
+    @cached_property
+    def tests_require(self) -> List[str]:
+        """
+        If your project’s tests need one or more additional packages besides
+        those needed to install it, you can use this option to specify them.
+
+        It's usage is explained in `setuptools documentation
+        <http://setuptools.readthedocs.io/en/latest/setuptools.html#new-and-changed-setup-keywords>`
+
+        :return: a list of strings
+        """
+        return list_from_file('requirements/_tests.txt')
 
     def setup(self):
         """Run :func:`setuptools.setup` using :func:~`raw`."""
@@ -249,15 +276,14 @@ class ProjectMetadata(object):
                         ]
                     },
                     cmdclass={'docs': Documentation,
-                              'venv': Venv,
                               'clean': Clean},
-                    install_requires=[],
-                    tests_require=['pytest',
-                                   'pytest-cookies'],
+                    install_requires=self.install_requires,
+                    tests_require=self.tests_require,
                     setup_requires=['pbr>=1.9',
                                     'setuptools>=17.1',
-                                    'pytest',
-                                    'pytest-runner'])
+                                    'flake8',
+                                    'pytest-runner',
+                                    'pytest'])
 
     def __str__(self):
         """Provide a human-readable representation."""
@@ -317,33 +343,6 @@ class Clean(setuptools.Command):
         for path in find_files(pattern):
             self.announce('Cleaning path {!s}'.format(path), 2)
             shutil.rmtree(path, ignore_errors=True)
-
-
-class Venv(setuptools.Command):
-    """Setup venvs for development or production."""
-
-    description = 'create a virtualenv pre-installed with dependencies'
-    user_options = [
-        # The format is (long option, short option, description).
-        ('deps=', None, 'path to requirements.txt'),
-    ]
-
-    def initialize_options(self):
-        """Set default values for options."""
-        # Each user option must be listed here with their default value.
-        self.deps = './requirements.txt'
-
-    def finalize_options(self):
-        """Post-process options."""
-        if self.deps:
-            deps = Path(str(self.deps))
-            assert deps.exists(), \
-                ('Requirements file %s does not exist.'.format(deps))
-
-    def run(self):
-        """Run command."""
-        import venv
-        venv.EnvBuilder(clear=True, with_pip=True).create('.')
 
 
 class Documentation(setuptools.Command):
@@ -538,6 +537,11 @@ def compose(*functions):
 def read_file(file_path: str) -> str:
     """Read text from file relative to the project root."""
     return Path(PROJECT_ROOT / str(file_path)).read_text()
+
+
+def list_from_file(file_path: str) -> List[str]:
+    content = read_file(file_path)
+    return [line.strip() for line in content.splitlines() if line]
 
 
 def find_files(directory, pattern):

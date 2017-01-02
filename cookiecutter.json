@@ -2,7 +2,7 @@
   "full_name": "Charles Bouchard-Légaré",
   "email": "cblegare.atl@ntis.ca",
   "github_username": "abstrus",
-  "project_name": "Demonstration Cookie",
+  "project_name": "Demo Cookie",
   "namespace": "abstrus",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
   "package_name": "{% if cookiecutter.namespace %}{{ cookiecutter.namespace }}.{{ cookiecutter.project_slug }}{% else %}{{ cookiecutter.project_slug }}{% endif %}",
@@ -15,5 +15,7 @@
   "project_license": [
     "MIT license", "BSD license", "ISC license", "Apache Software License 2.0",
     "GNU General Public License v3", "Not open source"
-  ]
+  ],
+  "use_flask": "y",
+  "make_rest_api": "{{ cookiecutter.use_flask }}"
 }
