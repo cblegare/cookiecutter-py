@@ -214,7 +214,7 @@ class ProjectMetadata(object):
             find_packages = setuptools.find_packages
         else:
             find_packages = setuptools.PEP420PackageFinder.find
-        value = find_packages(str(PROJECT_ROOT), exclude=['docs',
+        value = find_packages(str(PROJECT_ROOT), exclude=['docs*',
                                                           'test*',
                                                           'requirements'])
         return [self._ensure_short_string(package) for package in value]
