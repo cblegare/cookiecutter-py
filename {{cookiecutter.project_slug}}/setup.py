@@ -21,7 +21,7 @@ import setuptools
 __all__ = (
     'ProjectMetadata',
     'Clean',
-    'Venv',
+
     'Documentation',
 )
 
@@ -276,7 +276,6 @@ class ProjectMetadata(object):
                         ]
                     },
                     cmdclass={'docs': Documentation,
-                              'venv': Venv,
                               'clean': Clean},
                     install_requires=self.install_requires,
                     tests_require=self.tests_require,
@@ -344,33 +343,6 @@ class Clean(setuptools.Command):
         for path in find_files(pattern):
             self.announce('Cleaning path {!s}'.format(path), 2)
             shutil.rmtree(path, ignore_errors=True)
-
-
-class Venv(setuptools.Command):
-    """Setup venvs for development or production."""
-
-    description = 'create a virtualenv pre-installed with dependencies'
-    user_options = [
-        # The format is (long option, short option, description).
-        ('deps=', None, 'path to requirements.txt'),
-    ]
-
-    def initialize_options(self):
-        """Set default values for options."""
-        # Each user option must be listed here with their default value.
-        self.deps = './requirements.txt'
-
-    def finalize_options(self):
-        """Post-process options."""
-        if self.deps:
-            deps = Path(str(self.deps))
-            assert deps.exists(), \
-                ('Requirements file %s does not exist.'.format(deps))
-
-    def run(self):
-        """Run command."""
-        import venv
-        venv.EnvBuilder(clear=True, with_pip=True).create('.')
 
 
 class Documentation(setuptools.Command):
