@@ -6,6 +6,7 @@ from collections import OrderedDict
 from contextlib import contextmanager
 import copy
 import datetime
+import fnmatch
 import os
 import pip
 import pytest
@@ -109,6 +110,47 @@ def test_bake_without_author_file(cookies, context):
             assert 'AUTHORS.rst' not in manifest_file.read()
 
 
+def test_bake_without_flask(cookies, context):
+    """
+    Given known flask components, ensure none exists given context.
+
+    :param cookies:
+    :param context:
+    :return:
+    """
+    context.update({'use_flask': 'n'})
+    with bake_in_temp_dir(cookies, extra_context=context) as result:
+        project_path, project_slug, project_package_dir = project_info(result,
+                                                                       context)
+        flask_source_files = ["web.py"]
+        flask_source_root = project_package_dir
+        found_source_files = list(find_files(flask_source_root,
+                                             flask_source_files))
+        assert not found_source_files, (
+            "Flask sources found : {!s}".format(found_source_files))
+
+        flask_test_files = ["functional/test_web.py"]
+        flask_test_root = os.path.join(flask_source_root, "tests")
+        found_test_files = list(find_files(flask_test_root,
+                                             flask_test_files))
+        assert not found_test_files, (
+            "Flask tests found : {!s}".format(found_test_files))
+
+        flask_doc_files = ["web*.rst"]
+        flask_doc_root = os.path.join(flask_source_root, "docs")
+        found_doc_files = list(find_files(flask_doc_root,
+                                             flask_doc_files))
+        assert not found_doc_files, (
+            "Flask sources found : {!s}".format(found_doc_files))
+
+        flask_words = ["flask"]
+        for generated_file in find_files(project_path, '*'):
+            content = open(generated_file).read()
+            assert all(word not in content for word in flask_words), (
+                "Flask vocabulary found : one of {!s} in {!s}"
+                "".format(", ".join(flask_words), generated_file))
+
+
 def test_bake_selecting_license(cookies, context):
     license_strings = {
         'MIT license': 'MIT ',
@@ -204,11 +246,11 @@ def project_info(result, actual_context=None):
     namespace = actual_context.get("namespace", None)
 
     if namespace:
-        project_dir = os.path.join(project_path, namespace, project_slug)
+        project_package = os.path.join(project_path, namespace, project_slug)
     else:
-        project_dir = os.path.join(project_path, project_slug)
+        project_package = os.path.join(project_path, project_slug)
 
-    return project_path, project_slug, project_dir
+    return project_path, project_slug, project_package
 
 
 @contextmanager
@@ -259,6 +301,15 @@ def bake_and_install(cookie, *args, **kwargs):
         pip.main(['install', '--upgrade', '--editable', str(project_path)])
         yield result
         pip.main(['uninstall', project_slug])
+
+
+def find_files(directory, pattern):
+    """Generate file names matching pattern recursively found in directory."""
+    for root, dirs, files in os.walk(str(directory)):
+        for basename in files:
+            if fnmatch.fnmatch(basename, str(pattern)):
+                filename = os.path.join(root, basename)
+                yield filename
 
 
 def run_inside_dir(command, dirpath):

@@ -35,7 +35,11 @@ instance/
 ### pyenv
 .python-version
 ### virtualenv
-venv/
+bin/
+lib/
+lib64
+include/
+pyvenv.cfg
 ### Log Files
 *.log
 ###
@@ -90,5 +94,6 @@ Session.vim
 tags
 ### IDE
 .idea/
+pip-selfcheck.json
 ###
 #########

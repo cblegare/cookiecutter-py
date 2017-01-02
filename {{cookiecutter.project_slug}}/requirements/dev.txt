@@ -1,4 +1,4 @@
--rrequirements/prod.txt
--rrequirements/_docs.txt
--rrequirements/_tests.txt
--rrequirements/_cqa.txt
+-rprod.txt
+-r_docs.txt
+-r_tests.txt
+-r_cqa.txt
