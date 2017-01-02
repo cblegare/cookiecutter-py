@@ -33,6 +33,13 @@ def find_files_in_patterns(directory, patterns):
 
 
 if __name__ == '__main__':
+    namespace = '{{ cookiecutter.namespace }}'
+    source_dir = '{{ cookiecutter.project_slug }}'
+
+    # Make sure the HTML static directory exists
+    os.makedirs(os.path.join(PROJECT_DIRECTORY, "docs", "_static"),
+                exist_ok=True)
+
     if '{{ cookiecutter.create_author_file }}' != 'y':
         remove_file('AUTHORS.rst')
         remove_file('docs/authors.rst')
@@ -46,8 +53,6 @@ if __name__ == '__main__':
     if 'Not open source' == '{{ cookiecutter.project_license }}':
         remove_file('LICENSE')
 
-    namespace = '{{ cookiecutter.namespace }}'
-    source_dir = '{{ cookiecutter.project_slug }}'
     if namespace:
         parts = namespace.split(".")
         os.makedirs(os.path.join(*parts), exist_ok=True)

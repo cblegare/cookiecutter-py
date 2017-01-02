@@ -41,14 +41,15 @@ def test_web_get_greetings_with_name(client):
 def test_web_get_greetings_with_name_and_formal_style(client):
     rv = client.get('/greetings/John?style=formal')
     assert rv.status_code == 200, 'GET greetings with arg responds "OK"'
-    assert 'Good evening John' in rv.data.decode(), (''
-        'greetings responded as expected')
+    assert 'Good evening John' in rv.data.decode(), \
+        'greetings responded as expected'
 
 
 def test_web_get_greetings_with_name_and_slang_style(client):
     rv = client.get('/greetings/John?style=slang')
     assert rv.status_code == 200, 'GET greetings with arg responds "OK"'
-    assert 'Yo !!1 John!' in rv.data.decode(), 'greetings responded as expected'
+    assert 'Yo !!1 John!' in rv.data.decode(), \
+        'greetings responded as expected'
 
 
 {% if cookiecutter.make_rest_api == 'y' -%}

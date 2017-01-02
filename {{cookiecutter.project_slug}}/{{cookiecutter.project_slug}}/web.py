@@ -42,9 +42,9 @@ def greetings_view(person='World!'):
 
 {% if cookiecutter.make_rest_api == 'y' -%}
 class HelloWorldViewset(ResourceBase):
-    resource_name = 'myresource'  # The name of the resource.  This will be
-                                  # appended to the _namespace to complete
-                                  # the url.
+    # The name of the resource.  This will be appended to the namespace to
+    # complete the url.
+    resource_name = 'myresource'
 
     # The decorator indicates that the base url will be used
     # and that it will be registered for GET requests

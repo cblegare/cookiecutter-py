@@ -1,4 +1,4 @@
--r/prod.txt
--r/_docs.txt
--r/_tests.txt
--r/_cqa.txt
+-rprod.txt
+-r_docs.txt
+-r_tests.txt
+-r_cqa.txt

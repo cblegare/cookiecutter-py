@@ -9,8 +9,8 @@ from {% if cookiecutter.namespace %}{{ cookiecutter.namespace }}.{{ cookiecutter
 
 
 def test_formal():
-    assert 'Good evening John' == str(greetings.Formal("John"))
+    assert 'Good evening John' == str(greetings.Formal('John'))
 
 
 def test_slang():
-    assert 'Yo !!1 John!' == str(greetings.Slang("John"))
+    assert 'Yo !!1 John!' == str(greetings.Slang('John'))
