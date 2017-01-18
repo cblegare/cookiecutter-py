@@ -7,8 +7,8 @@
 from flask import Blueprint, Flask, request
 {% if cookiecutter.make_rest_api == 'y' -%}
 from flask_ripozo import FlaskDispatcher
+from ripozo.adapters import HalAdapter, SirenAdapter
 from ripozo.decorators import apimethod
-from ripozo.adapters import SirenAdapter, HalAdapter
 from ripozo.resources import ResourceBase
 {% endif -%}
 
@@ -42,6 +42,8 @@ def greetings_view(person='World!'):
 
 {% if cookiecutter.make_rest_api == 'y' -%}
 class HelloWorldViewset(ResourceBase):
+    """Views for the 'myresource' REST resouce."""
+
     # The name of the resource.  This will be appended to the namespace to
     # complete the url.
     resource_name = 'myresource'
@@ -52,16 +54,19 @@ class HelloWorldViewset(ResourceBase):
     # method and handled here
     @apimethod(methods=['GET'])
     def hello(cls, request, *args, **kwargs):
+        """Return fake resource representation."""
         faked_response_properties = {'content': 'hello world'}
         return cls(properties=faked_response_properties)
 
     @apimethod(methods=['POST'])
     def post_hello(cls, request, *args, **kwargs):
+        """Do not create a new resource, but should!"""
         faked_response_properties = {'content': 'hello world'}
         return cls(properties=faked_response_properties, status_code=202)
 
 
 def create_app():
+    """Create a new Flask web application and returns it."""
     # Create the flask application
     app = Flask(__name__)
     api_blueprint = Blueprint('hello_api', __name__)

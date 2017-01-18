@@ -8,6 +8,7 @@
 from pathlib import Path
 import sys
 
+
 if __name__ == '__main__' and not __package__:
     # This should never happen when installed from pip (setup.py).
     # This workaround is NOT bulletproof, rather brittle as many edge
@@ -33,8 +34,10 @@ if __name__ == '__main__' and not __package__:
     print('    {!s} -m pip install {{ cookiecutter.project_slug }}'.format(py),
           file=sys.stderr)
 
+
 from {% if cookiecutter.namespace %}{{ cookiecutter.namespace }}.{{ cookiecutter.project_slug }}{% else %}{{ cookiecutter.project_slug }}{% endif %} import __project__  # noqa
 from {% if cookiecutter.namespace %}{{ cookiecutter.namespace }}.{{ cookiecutter.project_slug }}{% else %}{{ cookiecutter.project_slug }}{% endif %}. cli import main  # noqa
+
 
 if __name__ == '__main__':
     main(prog_name=__project__)

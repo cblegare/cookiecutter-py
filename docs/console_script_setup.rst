@@ -4,49 +4,41 @@
 Console Script Setup
 ====================
 
-Optionally, your package can include a console script
+Your package can include a console script
 
 
 How It Works
 ------------
 
-If the 'command_line_interface' option is set to ['click'] during setup, cookiecutter will
-add a file 'cli.py' in the project_slug subdirectory. An entry point is added to
-setup.py that points to the main function in cli.py.
+Cookiecutter will add a file `cli.py` in the project_slug subdirectory. An
+entry point is added to `setup.py` that points to the main function in
+`cli.py`.
 
 
 Usage
 -----
 
-To use the console script in development:
-
-.. code-block:: bash
+To use the console script in development::
 
     pip install -e projectdir
 
-``projectdir`` should be the top level project directory with the setup.py file
+``projectdir`` should be the top level project directory with the `setup.py`
+file
 
-The script will be generated with output for no arguments and --help.
-
---help
-    show help menu and exit
+The script will be generated with output for no arguments and `--help`.
 
 
 Known Issues
 ------------
 
-Installing the project in a development environment using:
-
-.. code-block:: bash
+Installing the project in a development environment using::
 
     python setup.py develop
 
 will not set up the entry point correctly. This is a known issue with Click.
-The following will work as expected:
+The following will work as expected::
 
-.. code-block:: bash
-
-    pip install mypackage --editable
+    pip install --editable mypackage
 
 With 'mypackage' adjusted to the specific project.
 

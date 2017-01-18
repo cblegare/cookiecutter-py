@@ -3,7 +3,7 @@
   "email": "cblegare.atl@ntis.ca",
   "github_username": "abstrus",
   "project_name": "Demo Cookie",
-  "namespace": "abstrus",
+  "namespace": "cblegare",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
   "package_name": "{% if cookiecutter.namespace %}{{ cookiecutter.namespace }}.{{ cookiecutter.project_slug }}{% else %}{{ cookiecutter.project_slug }}{% endif %}",
   "project_short_description": "Demonstration Cookie gets you started with some tools!",

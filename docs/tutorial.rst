@@ -4,7 +4,7 @@ Tutorial
 .. note:: Did you find any of these instructions confusing? `Edit this file`_
           and submit a pull request with your improvements!
 
-.. _`Edit this file`: https://github.com/abstrus/cookiecutter-pypackage/blob/master/docs/tutorial.rst
+.. _`Edit this file`: https://github.com/abstrus/cookiecutter-py/blob/master/docs/tutorial.rst
 
 To start with, you will need a `GitHub account`_ and an account on `PyPI`_.
 Create these before you get started on this tutorial. If you are new to Git and
@@ -20,19 +20,16 @@ Step 1: Install Cookiecutter
 ----------------------------
 
 First, you need to create and activate a virtualenv for the package project.
-Use your favorite method, or create a virtualenv for your new package like this:
-
-.. code-block:: bash
+Use your favorite method, or create a virtualenv for your new package like
+this::
 
     virtualenv ~/.virtualenvs/mypackage
 
 Here, ``mypackage`` is the name of the package that you'll create.
 
-Activate your environment:
+Activate your environment::
 
-.. code-block:: bash
-
-    source bin/activate
+    . ~/.virtualenvs/mypackage/bin/activate
 
 On Windows, activate it like this. You may find that using a Command Prompt
 window works better than gitbash.
@@ -42,9 +39,7 @@ window works better than gitbash.
     > \path\to\env\Scripts\activate
 
 
-Install cookiecutter:
-
-.. code-block:: bash
+Install cookiecutter::
 
     pip install cookiecutter
 
@@ -54,11 +49,9 @@ Step 2: Generate Your Package
 
 Now it's time to generate your Python package.
 
-Use cookiecutter, pointing it at the cookiecutter-pypackage repo:
+Use cookiecutter, pointing it at the cookiecutter-py repo::
 
-.. code-block:: bash
-
-    cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git
+    cookiecutter https://github.com/cblegare/cookiecutter-py.git
 
 You'll be asked to enter a bunch of values to set the package up.
 If you don't know what to enter, stick with the defaults.
@@ -76,9 +69,7 @@ Step 5.
 virtualenv folder name to your .gitignore file.``
 
 You will find one folder named after the ``[project_slug]``. Move into this
-folder, and then setup git to use your GitHub repo and upload the code:
-
-.. code-block:: bash
+folder, and then setup git to use your GitHub repo and upload the code::
 
     cd mypackage
     git init .
@@ -100,14 +91,12 @@ an existing one.
 Step 4: Install Dev Requirements
 --------------------------------
 
-You should still be in the folder containing the ``requirements_dev.txt`` file.
+You should still be in the folder containing the ``requirements/dev.txt`` file.
 
 Your virtualenv should still be activated. If it isn't, activate it now.
-Install the new project's local development requirements:
+Install the new project's local development requirements::
 
-.. code-block:: bash
-
-    pip install -r requirements_dev.txt
+    pip install -r requirements/dev.txt
 
 If you have issues building the wheel for cryptography, make sure that the
 required dependencies are installed. Follow the `Cryptography Instruction`_
@@ -133,11 +122,13 @@ it "on" in the box next to the ``mypackage`` repo. Do not try to follow the
 other instructions, that will be taken care of next.
 
 In your terminal, your virtualenv should still be activated. If it isn't,
-activate it now. Run the script to do your Travis CI setup:
-
-.. code-block:: bash
+activate it now. Run the script to do your Travis CI setup::
 
     python travis_pypi_setup.py
+
+.. todo::
+
+    The above file went missing from the project
 
 This will:
 
@@ -203,7 +194,7 @@ When you are ready, release your package the standard Python way.
 
 See `PyPI Help`_ for more information about submitting a package.
 
-Here's a release checklist you can use: https://gist.github.com/abtrus/5990987
+Also, have a look at the :ref:`release-checklist`
 
 .. _`PyPI`: https://pypi.python.org/pypi
 .. _`PyPI Help`: http://peterdowns.com/posts/first-time-with-pypi.html
@@ -216,4 +207,4 @@ Visit our :ref:`troubleshooting` page for help. If that doesn't help, go to
 our `Issues`_ page and create a new Issue. Be sure to give as much information
 as possible.
 
-.. _`Issues`: https://github.com/abstrus/cookiecutter-pypackage/issues
+.. _`Issues`: https://github.com/cblegare/cookiecutter-py/issues

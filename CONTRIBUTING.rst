@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/abstrus/cookiecutter-py/issues
+Report bugs at https://github.com/cblegare/cookiecutter-py/issues
 
 If you are reporting a bug, please include:
 
@@ -49,7 +49,7 @@ and such.
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/abstrus/cookiecutter-py/issues.
+The best way to send feedback is to file an issue at https://github.com/cblegare/cookiecutter-py/issues.
 
 If you are proposing a new feature:
 
@@ -69,26 +69,23 @@ development. Please note this documentation assumes you already have
 1. Fork the `cookiecutter-py` repo on GitHub.
 2. Clone your fork locally::
 
-  .. code-block:: bash
-
     $ cd path_for_the_repo
     $ git clone git@github.com:YOUR_NAME/cookiecutter-py.git
+    $ cd cookiecutter-py
 
 3. Assuming you have virtualenv installed (If you have Python3.5 this should
    already be there), you can create a new environment for your local
    development by typing::
 
-  .. code-block:: bash
+    $ python -m venv .
+    $ . bin/activate
 
-    $ virtualenv cookiecutter-py-env
-    $ source cookiecutter-py-env/bin/activate
+  This should change the shell to look something like
 
-    This should change the shell to look something like
+  .. code-block::
     (cookiecutter-py-env) $
 
 4. Create a branch for local development::
-
-  .. code-block:: bash
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
@@ -98,18 +95,13 @@ development. Please note this documentation assumes you already have
    this package contains mostly templates the flake should be run for tests
    directory::
 
-  .. code-block:: bash
-
-    $ flake8 ./tests
+    $ python setup.py lint
 
 6. The next step would be to run the test cases. `cookiecutter-py` uses
    ``py.test``, you can run PyTest. Before you run pytest you should ensure all
    dependancies are installed::
 
-  .. code-block:: bash
-
-    $ pip install -rrequirements_dev.txt
-    $ py.test ./tests
+    $ python setup.py test
 
    If you get any errors while installing cryptography package (something like
    ``#include <openssl/aes.h>``). Please update your pip version and try again::
@@ -120,20 +112,16 @@ development. Please note this documentation assumes you already have
 7. Before raising a pull request you should also run tox. This will run the
    tests across different versions of Python::
 
-  .. code-block:: bash
-
     $ tox
 
    .. note::
-      If you are missing flake8, pytest and/or tox, just pip install them into
-      your virtualenv.
+        If you are missing flake8, pytest and/or tox, just pip install them
+        into your virtualenv.
 
 8. If your contribution is a bug fix or new feature, you may want to add a test
    to the existing test suite. See section Add a New Test below for details.
 
 9. Commit your changes and push your branch to GitHub::
-
-  .. code-block:: bash
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
@@ -152,8 +140,7 @@ Before you submit a pull request, check that it meets these guidelines:
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
 
-3. The pull request should work for Python 3.5, and for
-   PyPy.
+3. The pull request should work for Python 3.5.
 
 
 Add a New Test
@@ -165,8 +152,8 @@ focus on one tiny bit of functionality and prove changes are correct.
 
 To write and run your new test, follow these steps:
 
-1. Add the new test to `tests/test_bake_project.py`. Focus your test on the
-   specific bug or a small part of the new feature.
+1. Add the new test to one of the test suites in the `tests/` folder. Focus
+   your test on the specific bug or a small part of the new feature.
 
 2. If you have already made changes to the code, stash your changes and confirm
    all your changes were stashed::

@@ -7,13 +7,9 @@ setup module
 
 The *setup.py* file is a swiss knife for various tasks.
 
-
-making a virtual python environment
------------------------------------
-
 Start by creating a virtual python environment::
 
-    $ python setup.py venv
+    $ python -m venv .
 
 You now can use this isolated clean python environment::
 
