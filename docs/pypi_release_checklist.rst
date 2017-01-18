@@ -1,14 +1,14 @@
+.. _release-checklist:
+
 PyPI Release Checklist
 ======================
 
 Before Your First Release
 -------------------------
 
-#. Register the package on PyPI:
+#. Register the package on PyPI::
 
-    .. code-block:: bash
-
-        python setup.py register
+    python setup.py register
 
 #. Visit PyPI to make sure it registered.
 
@@ -17,33 +17,25 @@ For Every Release
 
 #. Update HISTORY.rst
 
-#. Commit the changes:
+#. Commit the changes::
 
-    .. code-block:: bash
-
-        git add HISTORY.rst
-        git commit -m "Changelog for upcoming release 0.1.1."
+    git add HISTORY.rst
+    git commit -m "Changelog for upcoming release 0.1.1."
 
 #. Update version number (can also be patch or major)
 
 #. Install the package again for local development, but with the new version
-   number:
+   number::
 
-    .. code-block:: bash
+    python setup.py develop
 
-        python setup.py develop
+#. Push the commit::
 
-#. Push the commit:
+    git push
 
-    .. code-block:: bash
+#. Push the tags, creating the new release on both GitHub and PyPI::
 
-        git push
-
-#. Push the tags, creating the new release on both GitHub and PyPI:
-
-    .. code-block:: bash
-
-        git push --tags
+    git push --tags
 
 #. Check the PyPI listing page to make sure that the README, release notes,
    and roadmap display properly. If not, try one of these:
@@ -51,16 +43,16 @@ For Every Release
     #. Copy and paste the RestructuredText into http://rst.ninjs.org/ to find
        out what broke the formatting.
 
-    #. Check your long_description locally:
+    #. Check your long_description locally::
 
-        .. code-block:: bash
+        pip install readme_renderer
+        python setup.py check -r -s
 
-            pip install readme_renderer
-            python setup.py check -r -s
-
-#. Edit the release on GitHub (e.g. https://github.com/abstrus/cookiecutter/releases).
+#. Edit the release on GitHub (e.g.
+   https://github.com/cblegare/cookiecutter-py/releases).
    Paste the release notes into the release's release page, and come up with a
    title for the release.
+
 
 About This Checklist
 --------------------

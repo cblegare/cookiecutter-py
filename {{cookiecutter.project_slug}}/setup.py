@@ -8,15 +8,14 @@
 from distutils.version import LooseVersion, Version
 from functools import lru_cache, reduce
 from pathlib import Path
+from typing import List
 import email.utils
 import fnmatch
 import os
 import platform
+import setuptools
 import shutil
 import urllib.parse
-from typing import List
-
-import setuptools
 
 __all__ = (
     'ProjectMetadata',
@@ -222,6 +221,8 @@ class ProjectMetadata(object):
     @cached_property
     def install_requires(self) -> List[str]:
         """
+        Production dependancies.
+
         A string or list of strings specifying what other distributions need
         to be installed when this one is.
 
@@ -235,6 +236,8 @@ class ProjectMetadata(object):
     @cached_property
     def tests_require(self) -> List[str]:
         """
+        Automated tests dependancies.
+
         If your project’s tests need one or more additional packages besides
         those needed to install it, you can use this option to specify them.
 

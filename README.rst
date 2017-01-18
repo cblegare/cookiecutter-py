@@ -4,7 +4,7 @@ Cookiecutter PyPackage
 
 Cookiecutter_ template for a Python package.
 
-* GitHub repo: https://github.com/abstrus/cookiecutter-py/
+* GitHub repo: https://github.com/cblegare/cookiecutter-py/
 * Free software: GNU General Public License v3
 
 Features
@@ -15,8 +15,11 @@ Features
 * Sphinx_ docs: Documentation ready for generation with, for example,
   ReadTheDocs_
 * Command line interface using Click
+* Support for implicit namespaces from `PEP420`_
+* Gets you started for a web application (optional)
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _PEP420: https://www.python.org/dev/peps/pep-0420/
 
 
 Quickstart
@@ -29,15 +32,15 @@ Cookiecutter 1.4.0 or higher)::
 
 Generate a Python package project::
 
-    cookiecutter https://github.com/abstrus/cookiecutter-py.git
+    cookiecutter https://github.com/cblegare/cookiecutter-py.git
 
 Then:
 
 * Create a repo and put it there.
 * Install the dev requirements into a virtualenv.
-  (``pip install -r requirements_dev.txt``)
-* Add a `requirements.txt` file that specifies the packages you will need for
-  your project and their versions. For more info see the
+  (``pip install -r requirements/dev.txt``)
+* Edit the `requirements.txt` file that specifies the packages you will need
+  for your project and their versions. For more info see the
   `pip docs for requirements files`_.
 
 .. _`pip docs for requirements files`: https://pip.pypa.io/en/stable/user_guide/#requirements-files
