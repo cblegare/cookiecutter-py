@@ -1,4 +1,4 @@
-radon
+radon==1.4.2
 xenon
 flake8==3.2.1
 flake8-quotes>=0.3
