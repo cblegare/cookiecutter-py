@@ -3,5 +3,5 @@ flask
 {% endif -%}
 {% if cookiecutter.make_rest_api == 'y' -%}
 flask-ripozo==1.0.4
-ripozo
+ripozo==1.3.0
 {% endif -%}
