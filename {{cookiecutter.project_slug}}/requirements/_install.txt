@@ -1,5 +1,5 @@
 {% if cookiecutter.use_flask == 'y' -%}
-flask
+flask==0.12
 {% endif -%}
 {% if cookiecutter.make_rest_api == 'y' -%}
 flask-ripozo==1.0.4
