@@ -1,5 +1,5 @@
 radon==1.4.2
-xenon
+xenon==0.5.0
 flake8==3.2.1
 flake8-quotes>=0.3
 pycodestyle>=2.2
