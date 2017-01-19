@@ -31,7 +31,7 @@ CONTEXTS = OrderedDict(
 )
 
 
-@pytest.fixture(scope="function",
+@pytest.yield_fixture(scope="function",
                 params=CONTEXTS.values(),
                 ids=list(CONTEXTS.keys()))
 def context(request):

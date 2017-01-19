@@ -1,16 +1,20 @@
-======================
-Cookiecutter PyPackage
-======================
 
+
+.. image:: https://travis-ci.org/cblegare/pythontemplate.svg?branch=master
+   :target: https://travis-ci.org/cblegare/pythontemplate
+   :alt: Build Status
 .. image:: https://readthedocs.org/projects/cblegarepythontemplate/badge/?version=latest
-:target: http://cblegarepythontemplate.readthedocs.io/en/latest/?badge=latest
-:alt: Documentation Status
+   :target: http://cblegarepythontemplate.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 Cookiecutter_ template for a Python package.
 
-* GitHub repo: https://github.com/cblegare/cookiecutter-py/
-* Documentation: https://cblegarepythontemplate.readthedocs.io
-* Free software: GNU General Public License v3
+GitHub repo:
+   https://github.com/cblegare/cookiecutter-py/
+Documentation:
+   https://cblegarepythontemplate.readthedocs.io
+Free software:
+   GNU General Public License v3
 
 Features
 --------
@@ -19,12 +23,13 @@ Features
 * Tox_ testing: Setup to easily test for Python 3.5 (WIP)
 * Sphinx_ docs: Documentation ready for generation with, for example,
   ReadTheDocs_
-* Command line interface using Click
+* Command line interface using Click_
 * Support for implicit namespaces from `PEP420`_
 * Gets you started for a web application (optional)
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _PEP420: https://www.python.org/dev/peps/pep-0420/
+.. _Click: http://click.pocoo.org/
 
 
 Quickstart
@@ -54,9 +59,11 @@ Then:
 Known issues
 ~~~~~~~~~~~~
 
-Be carefull with namespace packages using the `implicit namespace`_
-mechanism. Most projects managed by the Python Packaging Authority are
-not fully compliant yet.
+.. warning:: Be carefull with namespace packages using the
+   `implicit namespace`_ mechanism. Some tools are not fully compliant yet.
+
+Namespace package and editable installations should be fixed with
+`setuptools 31`_ and Python 3.5:
 
 - https://github.com/pypa/packaging-problems/issues/12
 - https://github.com/pypa/setuptools/pull/789
@@ -64,14 +71,24 @@ not fully compliant yet.
 - https://github.com/pypa/setuptools/issues/513
 - https://github.com/pypa/pip/issues/3
 
-You may also have issues with imports with sphinx, pytest or pylint.
+You may also have issues with imports from external tools.   Most of them are
+or will be fixed in with `sphinx 1.5`_, `pytest 2.5`_ and `pylint 2.0`_ (not
+released yet).
 
 - https://github.com/sphinx-doc/sphinx/issues/1500
 - https://github.com/pytest-dev/pytest/issues/1567
 - https://github.com/pytest-dev/pytest/pull/1568
 - https://github.com/PyCQA/pylint/issues/842
 
+Using latest versions, only pylint_ still has issues with implicit namespaces
+at the time of this writing.
+
 .. _`implicit namespace`: https://www.python.org/dev/peps/pep-0420/
+.. _`setuptools 31`: http://setuptools.readthedocs.io/en/latest/history.html#v31-0-0
+.. _`sphinx 1.5`: http://www.sphinx-doc.org/en/1.5.1/changes.html#release-1-5-released-dec-5-2016
+.. _`pytest 2.5`: http://doc.pytest.org/en/latest/changelog.html#id149
+.. _`pylint 2.0`: https://github.com/PyCQA/pylint/milestone/2
+.. _pylint: https://www.pylint.org/
 
 
 Fork This / Create Your Own
@@ -81,14 +98,15 @@ If you have differences in your preferred setup, I encourage you to fork this
 to create your own version. Or create your own; it doesn't strictly have to
 be a fork.
 
-* It's up to you whether or not to rename your fork/own version. Do whatever
-  you think sounds good.
+.. note:: It's up to you whether or not to rename your fork/own version. Do
+   whatever you think sounds good.
 
 Or Submit a Pull Request
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 I also accept pull requests on this, if they're small, atomic, and if they
-make my own packaging experience better.
+make my own packaging experience better.  Read on in the :ref:`contributing`
+section.
 
 
 .. _Travis-CI: http://travis-ci.org/

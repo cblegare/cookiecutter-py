@@ -80,9 +80,8 @@ development. Please note this documentation assumes you already have
     $ python -m venv .
     $ . bin/activate
 
-  This should change the shell to look something like
+  This should change the shell to look something like::
 
-  .. code-block::
     (cookiecutter-py-env) $
 
 4. Create a branch for local development::
