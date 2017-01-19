@@ -4,7 +4,7 @@ Tutorial
 .. note:: Did you find any of these instructions confusing? `Edit this file`_
           and submit a pull request with your improvements!
 
-.. _`Edit this file`: https://github.com/abstrus/cookiecutter-py/blob/master/docs/tutorial.rst
+.. _`Edit this file`: https://github.com/cblegare/pythontemplate/blob/master/docs/tutorial.rst
 
 To start with, you will need a `GitHub account`_ and an account on `PyPI`_.
 Create these before you get started on this tutorial. If you are new to Git and
@@ -19,9 +19,9 @@ top of the page at `GitHub Help`_.
 Step 1: Install Cookiecutter
 ----------------------------
 
-First, you need to create and activate a virtualenv for the package project.
-Use your favorite method, or create a virtualenv for your new package like
-this::
+First, you may want to create and activate a virtualenv for the package
+project.  Use your favorite method, or create a virtualenv for your new
+package like this::
 
     virtualenv ~/.virtualenvs/mypackage
 
@@ -32,12 +32,12 @@ Activate your environment::
     . ~/.virtualenvs/mypackage/bin/activate
 
 On Windows, activate it like this. You may find that using a Command Prompt
-window works better than gitbash.
+window works better than gitbash (on this matter, see also
+:ref:`troubleshooting`).
 
-.. code-block:: powershell
+::
 
     > \path\to\env\Scripts\activate
-
 
 Install cookiecutter::
 
@@ -49,9 +49,9 @@ Step 2: Generate Your Package
 
 Now it's time to generate your Python package.
 
-Use cookiecutter, pointing it at the cookiecutter-py repo::
+Use cookiecutter, pointing it at the pythontemplate repo::
 
-    cookiecutter https://github.com/cblegare/cookiecutter-py.git
+    cookiecutter https://github.com/cblegare/pythontemplate.git
 
 You'll be asked to enter a bunch of values to set the package up.
 If you don't know what to enter, stick with the defaults.
@@ -207,4 +207,4 @@ Visit our :ref:`troubleshooting` page for help. If that doesn't help, go to
 our `Issues`_ page and create a new Issue. Be sure to give as much information
 as possible.
 
-.. _`Issues`: https://github.com/cblegare/cookiecutter-py/issues
+.. _`Issues`: https://github.com/cblegare/pythontemplate/issues

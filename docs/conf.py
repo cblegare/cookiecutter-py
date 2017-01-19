@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# cookiecutter-py documentation build configuration file
+# pythontemplate documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -216,7 +216,7 @@ html_static_path = ['static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'cookiecutter-pydoc'
+htmlhelp_basename = 'pythontemplatedoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -238,7 +238,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'cookiecutter-py.tex', 'cookiecutter-py Documentation',
+  (master_doc, 'pythontemplate.tex', 'pythontemplate Documentation',
    'Charles Bouchard-Légaré', 'manual'),
 ]
 
@@ -268,7 +268,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'cookiecutter-py', 'cookiecutter-py Documentation',
+    (master_doc, 'pythontemplate', 'pythontemplate Documentation',
      [author], 1)
 ]
 
@@ -282,8 +282,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'cookiecutter-py', 'cookiecutter-py Documentation',
-   author, 'cookiecutter-py', 'One line description of project.',
+  (master_doc, 'pythontemplate', 'pythontemplate Documentation',
+   author, 'pythontemplate', 'One line description of project.',
    'Miscellaneous'),
 ]
 

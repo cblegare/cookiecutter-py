@@ -7,7 +7,7 @@ Troubleshooting
 .. note:: Can you help improve this file? `Edit this file`_
           and submit a pull request with your improvements!
 
-.. _`Edit this file`: https://github.com/cblegare/cookiecutter-py/blob/master/docs/troubleshooting.rst
+.. _`Edit this file`: https://github.com/cblegare/pythontemplate/blob/master/docs/troubleshooting.rst
 
 
 Windows Issues

@@ -1,9 +1,9 @@
-.. cookiecutter-py documentation master file
+.. pythontemplate documentation master file
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 ===========================================
-Welcome to cookiecutter-py's documentation!
+Welcome to pythontemplate's documentation!
 ===========================================
 
 .. include:: ../README.rst

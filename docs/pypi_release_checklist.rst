@@ -49,7 +49,7 @@ For Every Release
         python setup.py check -r -s
 
 #. Edit the release on GitHub (e.g.
-   https://github.com/cblegare/cookiecutter-py/releases).
+   https://github.com/cblegare/pythontemplate/releases).
    Paste the release notes into the release's release page, and come up with a
    title for the release.
 

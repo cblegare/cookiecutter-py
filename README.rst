@@ -6,6 +6,11 @@
 .. image:: https://readthedocs.org/projects/cblegarepythontemplate/badge/?version=latest
    :target: http://cblegarepythontemplate.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
+.. image:: https://pyup.io/repos/github/cblegare/pythontemplate/shield.svg
+   :target: https://pyup.io/repos/github/cblegare/pythontemplate/
+   :alt: Updates
+
+----
 
 Cookiecutter_ template for a Python package.
 
