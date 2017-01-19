@@ -7,3 +7,4 @@ pytest-cookies==0.2.0
 watchdog==0.8.3
 alabaster==0.7.8
 pip
+sphinx_autodoc_typehints

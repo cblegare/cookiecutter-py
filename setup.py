@@ -255,7 +255,7 @@ def working_directory(path):
 def get_distribution_info():
     """Provide the keywords configurations for :func:`setuptools.setup`."""
     return dict(
-        name='cookiecutter-py',
+        name='cblegare.pythontemplate',
         packages=[],
         version='1.0',
         description='Cookiecutter template for a Python package',

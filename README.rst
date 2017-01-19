@@ -2,9 +2,14 @@
 Cookiecutter PyPackage
 ======================
 
+.. image:: https://readthedocs.org/projects/cblegarepythontemplate/badge/?version=latest
+:target: http://cblegarepythontemplate.readthedocs.io/en/latest/?badge=latest
+:alt: Documentation Status
+
 Cookiecutter_ template for a Python package.
 
 * GitHub repo: https://github.com/cblegare/cookiecutter-py/
+* Documentation: https://cblegarepythontemplate.readthedocs.io
 * Free software: GNU General Public License v3
 
 Features
