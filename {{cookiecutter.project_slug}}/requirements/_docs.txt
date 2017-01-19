@@ -1,4 +1,4 @@
 sphinx>=1.5a2
-sphinxcontrib-asyncio
+sphinxcontrib-asyncio==0.2.0
 sphinx-autodoc-typehints
 sphinx_rtd_theme
