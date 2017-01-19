@@ -1,4 +1,4 @@
 coverage==4.3.4
-pytest-cookies
+pytest-cookies==0.2.0
 pytest
 {% if cookiecutter.use_flask == 'y' -%}pytest-flask{% else -%}{% endif -%}
